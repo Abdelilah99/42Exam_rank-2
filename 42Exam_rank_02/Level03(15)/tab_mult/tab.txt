@@ -13,7 +13,7 @@ If there are no parameters, the program displays \n.
 Examples:
 
 $>./tab_mult 9
-1 x 9 = 9
+1 x 9 = 9 
 2 x 9 = 18
 3 x 9 = 27
 4 x 9 = 36
