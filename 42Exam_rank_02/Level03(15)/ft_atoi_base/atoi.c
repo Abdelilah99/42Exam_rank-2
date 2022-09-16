@@ -1,51 +1,43 @@
-int ft_str_check(char *str,int base){
-    int n;
-    if (!*str || !*(str +1) || (base < 2 || base >16))
-        return 0;
-    while (*str)
-    {
-        if(*str >= '0' && *str <='9')
-            n=(*str -'0');
-        if(*str >='A' && *str <='Z')
-            n=(*str -'A' +10);
-        else if(*str >='a' && *str <='z')
-            n=(*str -'a'+10);
-        if(n>=base)
-            return 0;
-    }
-    return 1;
-    
+char	to_lower(char c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (c + ('a' - 'A'));
+	return (c);
 }
-int	ft_atoi_base(const char *str, int str_base){
-    int i;
-    int n;
-    int sign;
 
-    i=0;
-    n=0;
-    sign =1;
+int get_digit(char c, int digits_in_base)
+{
+	int max_digit;
+	if (digits_in_base <= 10)
+		max_digit = digits_in_base + '0';
+	else
+		max_digit = digits_in_base - 10 + 'a';
 
-    if(!(*str) && !ft_str_check((char *)str,str_base))
-        return 0;
-    while (str[i]== ' ' || str[i]== '\f' || str[i] == '\r' ||str[i]=='\v'|| str[i]== '\n' || str[i]== '\t')
-    i++;
+	if (c >= '0' && c <= '9' && c <= max_digit)
+		return (c - '0');
+	else if (c >= 'a' && c <= 'f' && c <= max_digit)
+		return (10 + c - 'a');
+	else
+		return (-1);
+}
 
-    if(str[i]=='-'){
-        sign=-sign;
-        i++;
-    }
-    if(str[i]== '-' || str[i]=='+')
-        i++;
-    
-    while (str[i])
-    {
-        if(str[i]>='A' && 'F'>=str[i])
-            n=(n*str_base)+(str[i]-'A'+10);
-        else if(str[i] >='a' && 'f'>=str[i])
-            n=(n*str_base)+(str[i]-'a'+10);
-        else 
-            n=(n*str_base)+str[i]-'0';
-            i++;
-    }
-    return (n*sign);
+int ft_atoi_base(const char *str, int str_base)
+{
+	int result = 0;
+	int sign = 1;
+	int digit;
+
+	if (*str == '-')
+	{
+		sign = -1;
+		++str;
+	}
+
+	while ((digit = get_digit(to_lower(*str), str_base)) >= 0)
+	{
+		result = result * str_base;
+		result = result + (digit * sign);
+		++str;
+	}
+	return (result);
 }

@@ -4,20 +4,19 @@
 char *ft_strrev(char *str){
     int i;
     int j;
-    char k;
+    int k;
+
     i=0;
 
-    while (str[i])
-        i++;
+    while(str[i])
+    i++;
     i=-1;
 
-    while (++i < --j)
+    while (++i <--j)
     {
         k=str[i];
         str[i]=str[j];
         str[j]=k;
     }
-    
     return 0;
-
 }

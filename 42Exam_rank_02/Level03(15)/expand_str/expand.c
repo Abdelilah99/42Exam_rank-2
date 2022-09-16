@@ -4,20 +4,22 @@
 void ft_putchar(char c){
     write(1,&c,1);
 }
-int is_space(char c){
-    return (((c==' ') || (c=='\t'))?1:0);
+
+int ft_isspace(char c){
+    return (c==' ' && c=='\t');
+return 1;
+return 0;
 }
 void ft_expand(char *str){
-   int flag;
-   flag=0;
-
-   while(is_space(*str))
-   str++;
-   while (*str)
-   {
-        if(is_space(*str))
+    int flag;
+    flag=0;
+    while(ft_isspace(*str))
+        str++;
+    while (*str)
+    {
+        if(ft_isspace(*str))
         flag=1;
-        if (!is_space(*str))
+        if (!ft_isspace(*str))
         {
             if (flag)
             {
@@ -29,8 +31,8 @@ void ft_expand(char *str){
             ft_putchar(*str);
         }
         str++;
-   }
-   
+    }
+    
 }
 int main(int argc,char **argv){
     if (argc ==2)

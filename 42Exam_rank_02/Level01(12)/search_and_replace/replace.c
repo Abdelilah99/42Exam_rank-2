@@ -6,7 +6,7 @@
 /*   By: anoury <anoury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:38:09 by anoury            #+#    #+#             */
-/*   Updated: 2022/06/27 18:27:30 by anoury           ###   ########.fr       */
+/*   Updated: 2022/07/04 12:05:22 by anoury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,9 @@ int main(int argc,char **argv){
         i=0;
         while (argv[1][i])
         {
-            if(argv[1][i] == argv[2][0])
-            //argv[1][i] = argv[3][0];
-            	write(1,&argv[3][0],1);
-			else
-				write(1, &argv[1][i], 1);     
-			   	i++;
+            if (argv[1][i] == argv[2][0])
+					argv[1][i] = argv[3][0];
+					write(1, &argv[1][i], 1);
         }
         
     }
